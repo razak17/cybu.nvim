@@ -30,7 +30,7 @@ local default_config = {
     highlights = {
       current_buffer = "CybuFocus",
       adjacent_buffers = "CybuAdjacent",
-      background = "CubuBackground",
+      background = "CybuBackground",
       border = "CybuBorder",
       infobar = "CybuInfobar",
     },
