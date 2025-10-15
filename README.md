@@ -116,6 +116,7 @@ require("cybu").setup({
       last_used = {
         switch = "on_close",      -- immediate, on_close
         view = "paging",          -- paging, rolling
+        update_on = "buf_enter",  -- buf_enter, cursor_moved
       },
       auto = {
         view = "rolling",         -- paging, rolling
@@ -140,11 +141,52 @@ require("cybu").setup({
 ## Features
 
 - Two modes: cycle `:buffers` list or cycle last used buffers
+- **Cursor-based MRU ordering**: Control when buffers are marked as "used"
 - Adaptive size of the **_Cybu_** window
 - Various styling & positioning options
 - Exclude filetypes and define fallback
 - Autocmd events `CybuOpen` & `CybuClose`
 - Trigger context window on arbitrary autocommand events
+
+### Advanced: Cursor Movement Based MRU
+
+The `update_on` option in `last_used` mode controls when buffers are moved to the most recently used position:
+
+- `"buf_enter"` (default): Updates MRU order on every buffer switch
+- `"cursor_moved"`: Only updates MRU when cursor moves in the buffer
+- `"text_changed"`: Only updates MRU when text is actually edited
+
+```lua
+require("cybu").setup({
+  behavior = {
+    mode = {
+      last_used = {
+        update_on = "text_changed",
+      }
+    }
+  }
+})
+```
+
+### Experimental: Custom Buffer Providers
+
+**⚠️ Experimental Feature**: This feature is experimental and the API may change in future versions. Use with caution in production environments.
+
+You can integrate cybu with other buffer management plugins like [grapple.nvim](https://github.com/cbochs/grapple.nvim) or [harpoon.nvim](https://github.com/ThePrimeagen/harpoon) by providing a custom buffer provider function:
+
+```lua
+require("cybu").setup({
+  experimental = {
+    buffer_provider = function()
+      -- Return table of buffer objects: {{bufnr=1, filename="file.lua"}, ...}
+      -- Logic to fetch buffers from your preferred source
+      return custom_buffer_list
+    end
+  }
+})
+```
+
+See `examples/buffer_providers.lua` for working examples with grapple.nvim, harpoon.nvim, and advanced usage patterns.
 
 ## Breaking changes
 
