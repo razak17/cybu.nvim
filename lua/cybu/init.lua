@@ -25,7 +25,7 @@ end
 -- @usage require'cybu'.setup()
 -- @param[opt] user_config CybuOptions: Configuration table.
 cybu.setup = function(user_config)
-  vim.validate({ user_config = { user_config, "table", true } })
+  vim.validate("user_config", user_config, "table", true)
   c.load(user_config)
   _state.has_devicons = pcall(require, "nvim-web-devicons")
   _state.buffer_touch_times = {}
@@ -496,7 +496,7 @@ end
 -- @param direction string: 'next' or 'prev'
 -- @param mode string: 'default' or 'last_used'
 cybu.cycle = function(direction, mode)
-  vim.validate({ direction = { direction, "string", false } })
+  vim.validate("direction", direction, "string")
   if not vim.tbl_contains({ v.direction.next, v.direction.prev }, direction) then
     error("Invalid direction: " .. tostring(direction))
   end
