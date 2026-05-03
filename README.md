@@ -25,7 +25,7 @@ See [:help cybu.nvim](https://github.com/ghillb/cybu.nvim/blob/main/doc/cybu.nvi
 
 ## Requirements
 
-- Neovim >= 0.7.0
+- Neovim >= 0.12.0
 
 ## Installation
 
