@@ -1,4 +1,4 @@
-*cybu.nvim.txt*       cybu.nvim for neovim 0.7.0+     Author: Gero Hillebrandt
+*cybu.nvim.txt*       cybu.nvim for neovim 0.12.0+    Author: Gero Hillebrandt
 ================================================================================
 
 TABLE OF CONTENTS                                              *cybu.nvim.toc*
